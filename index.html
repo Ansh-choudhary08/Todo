@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo -Task Manager</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1 class="app-title">
+                <i class="fas fa-check-circle"></i>
+                 MyTodo
+            </h1>
+            <p class="app-subtitle">Organize your life, one task at a time</p>
+        </header>
+
+        <main class="todo-app">
+            <!-- Add Task Section -->
+            <section class="add-task-section" aria-labelledby="add-task-label">
+                <h2 id="add-task-label" class="visually-hidden">Add New Task</h2>
+                <form class="add-task-form" id="addTaskForm">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="taskInput" 
+                            class="task-input" 
+                            placeholder="What needs to be done?"
+                            aria-label="Enter new task"
+                            maxlength="200"
+                            required
+                        >
+                        <button 
+                            type="submit" 
+                            class="add-btn" 
+                            aria-label="Add task"
+                            title="Add task (Enter)"
+                        >
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Task List Section -->
+            <section class="task-list-section" aria-labelledby="task-list-label">
+                <h2 id="task-list-label" class="visually-hidden">Task List</h2>
+                
+                <!-- Task Counter and Controls -->
+                <div class="task-controls">
+                    <div class="task-counter">
+                        <span id="taskCount" class="counter-text">0 tasks remaining</span>
+                    </div>
+                    <div class="task-actions">
+                        <button 
+                            id="clearCompletedBtn" 
+                            class="clear-completed-btn"
+                            aria-label="Clear completed tasks"
+                            style="display: none;"
+                        >
+                            Clear completed
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="filter-tabs" role="tablist" aria-label="Filter tasks">
+                    <button 
+                        class="filter-tab active" 
+                        data-filter="all" 
+                        role="tab" 
+                        aria-selected="true"
+                        aria-controls="taskList"
+                    >
+                        All
+                    </button>
+                    <button 
+                        class="filter-tab" 
+                        data-filter="active" 
+                        role="tab" 
+                        aria-selected="false"
+                        aria-controls="taskList"
+                    >
+                        Active
+                    </button>
+                    <button 
+                        class="filter-tab" 
+                        data-filter="completed" 
+                        role="tab" 
+                        aria-selected="false"
+                        aria-controls="taskList"
+                    >
+                        Completed
+                    </button>
+                </div>
+
+                <!-- Task List -->
+                <div class="task-list-container">
+                    <ul id="taskList" class="task-list" role="listbox" aria-label="Task list">
+                        <!-- Tasks will be dynamically added here -->
+                    </ul>
+                    
+                    <!-- Empty State -->
+                    <div id="emptyState" class="empty-state" style="display: none;">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h3>No tasks yet</h3>
+                        <p>Add a task above to get started!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Keyboard Shortcuts Help -->
+        <footer class="app-footer">
+            <div class="keyboard-shortcuts">
+                <span class="shortcut-hint">
+                    <kbd>Enter</kbd> to add task
+                </span>
+                <span class="shortcut-hint">
+                    <kbd>Escape</kbd> to cancel edit
+                </span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Task Template (hidden) -->
+    <template id="taskTemplate">
+        <li class="task-item" role="option" tabindex="0">
+            <div class="task-content">
+                <button class="complete-btn" aria-label="Mark task as complete">
+                    <i class="fas fa-circle"></i>
+                </button>
+                <span class="task-text"></span>
+                <div class="task-actions">
+                    <button class="edit-btn" aria-label="Edit task">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="delete-btn" aria-label="Delete task">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <input type="text" class="edit-input" style="display: none;">
+        </li>
+    </template>
+
+    <script src="../static/script.js"></script>
+</body>
+</html> 
